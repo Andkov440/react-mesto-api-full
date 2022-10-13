@@ -1,0 +1,7 @@
+.photo__like-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  row-gap: 3px;
+}

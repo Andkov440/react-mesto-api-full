@@ -1,0 +1,12 @@
+.photo__trashbin {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  background-image: url('../../../img/trash.svg');
+}
+
+.photo__trashbin:hover {
+  opacity: 0.6;
+}

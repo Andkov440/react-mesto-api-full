@@ -1,0 +1,7 @@
+.header__auth {
+  display: flex;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  align-items: center;
+}

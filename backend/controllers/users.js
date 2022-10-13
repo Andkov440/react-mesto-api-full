@@ -4,12 +4,12 @@ const User = require('../models/user');
 
 const { REQUEST_OK } = require('../errors/errors');
 
+const { JWT_SECRET, NODE_ENV } = process.env;
+
 const NotFoundError = require('../errors/notFoundError');
 const ValidationError = require('../errors/validationError');
 const ConflictError = require('../errors/conflictError');
 const ServerError = require('../errors/serverError');
-
-const { JWT_SECRET, NODE_ENV } = process.env;
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -23,7 +23,7 @@ const getUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь по указанному _id не найден');
       }
-      return res.status(REQUEST_OK).send(user);
+      return res.send(user);
     })
     .catch((err) => next(err));
 };
@@ -95,11 +95,6 @@ const login = (req, res, next) => {
   User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, `${NODE_ENV === 'production' ? JWT_SECRET : 'super-secret_key'}`, { expiresIn: '7d' });
-      res.cookie('jwt', token, {
-        maxAge: 3600000,
-        httpOnly: true,
-        sameSite: true,
-      });
       res.send({ token });
     })
     .catch(next);

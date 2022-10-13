@@ -1,0 +1,19 @@
+.footer {
+  margin: 0 auto;
+  width: 288px;
+}
+
+@media (min-width: 425px) {
+  .footer {
+    width: auto;
+    margin-left: 14%;
+    margin-right: 14%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .footer {
+    width: 880px;
+    margin: 0 auto;
+  }
+}

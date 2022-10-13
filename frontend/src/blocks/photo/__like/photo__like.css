@@ -1,0 +1,12 @@
+.photo__like {
+  width: 24px;
+  height: 19px;
+  background-image: url('../../../img/like.svg');
+  background-repeat: no-repeat;
+  
+}
+
+.photo__like:hover {
+  background-image: url('../../../img/like-hover.svg');
+}
+

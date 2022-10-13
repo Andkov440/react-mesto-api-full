@@ -1,0 +1,19 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 282px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .profile {
+    width: 880px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+    "picture title add"
+    "picture subtitle add";
+    padding-bottom: 50px;
+  }
+}

@@ -1,0 +1,11 @@
+.error {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  color: #FF0000;
+  opacity: 1;
+  position: absolute;
+  top: calc(100% - 20px);
+  left: 0;
+  transition: 0.3s;
+}

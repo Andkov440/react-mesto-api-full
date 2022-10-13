@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const {
@@ -10,7 +12,7 @@ const routes = require('./routes');
 // eslint-disable-next-line import/order
 const { errors } = require('celebrate');
 // eslint-disable-next-line import/order
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // eslint-disable-next-line import/no-unresolved,import/order
 const cors = require('cors');
@@ -18,14 +20,9 @@ const cors = require('cors');
 const { PORT = 3000 } = process.env;
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
-});
-
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 
-app.use(requestLogger);
 const allowedCors = [
   'http://localhost:3000',
   'http://localhost:3001',
@@ -44,6 +41,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use(requestLogger);
 app.post('/signin', validationLogin, login);
 app.post('/signup', validationCreateUser, createUser);
 
@@ -51,6 +49,10 @@ app.use(routes);
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
+
+mongoose.connect('mongodb://localhost:27017/mestodb', {
+  useNewUrlParser: true,
+});
 
 app.listen(PORT, () => {
   // Если всё работает, консоль покажет, какой порт приложение слушает
