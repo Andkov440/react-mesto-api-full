@@ -21,6 +21,7 @@ class Api {
   getUserInfo = () => {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._getHeaders(),
+      credentials: "include",
     }).then((res) => {
       return this._checkResult(res);
     });
@@ -29,6 +30,7 @@ class Api {
   getCards = () => {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._getHeaders(),
+      credentials: "include",
     }).then((res) => {
       return this._checkResult(res);
     });
@@ -37,6 +39,7 @@ class Api {
   patchUserInfo = (name, about) => {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
@@ -50,6 +53,7 @@ class Api {
   changeAvatar = (avatar) => {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._getHeaders(),
       body: JSON.stringify({
         avatar: avatar,
@@ -62,6 +66,7 @@ class Api {
   postCard = (name, link) => {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      credentials: "include",
       headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
@@ -75,6 +80,7 @@ class Api {
   deleteCard = (cardId) => {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: this._getHeaders(),
     }).then((res) => {
       return this._checkResult(res);
@@ -84,6 +90,7 @@ class Api {
   likeCard = (cardId) => {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
+      credentials: "include",
       headers: this._getHeaders(),
     }).then((res) => {
       return this._checkResult(res);
@@ -93,6 +100,7 @@ class Api {
   dislikeCard = (cardId) => {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
+      credentials: "include",
       headers: this._getHeaders(),
     }).then((res) => {
       if (res.ok) {

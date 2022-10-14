@@ -15,25 +15,30 @@ const { errors } = require('celebrate');
 // const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // eslint-disable-next-line import/no-unresolved,import/order
-const cors = require('cors');
+// const cors = require('cors');
+const cors = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
+
+app.use(cors);
 // app.use(cookieParser());
 
-const allowedCors = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://andkov.nomoredomains.icu',
-  'https://andkov.nomoredomains.icu',
-];
+// const allowedCors = [
+//   'http://localhost:3000',
+//   'http://localhost:3001',
+//   'http://andkov.nomoredomains.icu',
+//   'https://andkov.nomoredomains.icu',
+// ];
 
-app.use(cors({
-  origin: allowedCors,
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: allowedCors,
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
 
 app.get('/crash-test', () => {
   setTimeout(() => {

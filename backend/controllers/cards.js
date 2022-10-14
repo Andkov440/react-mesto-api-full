@@ -9,6 +9,8 @@ const forbiddenError = require('../errors/forbiddenError');
 
 const getCards = (req, res, next) => {
   Card.find({})
+    .populate('owner')
+    .populate('likes')
     .then((cards) => res.send(cards))
     .catch(next);
 };
@@ -49,7 +51,7 @@ const likeCard = (req, res, next) => {
     req.params.id,
     { $addToSet: { likes: req.user._id } },
     { new: true },
-  ).then((card) => {
+  ).populate('owner').populate('likes').then((card) => {
     if (!card) {
       return next(new NotFoundError('Карточка с указанным _id не найдена'));
     }
@@ -68,7 +70,7 @@ const dislikeCard = (req, res, next) => {
     req.params.id,
     { $pull: { likes: req.user._id } },
     { new: true },
-  ).then((card) => {
+  ).populate('owner').populate('likes').then((card) => {
     if (!card) {
       return next(new NotFoundError('Карточка с указанным _id не найдена'));
     }

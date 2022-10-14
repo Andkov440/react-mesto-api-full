@@ -1,1 +1,1 @@
-export const baseUrl = 'https://andkov.nomoredomains.icu/api';
+export const baseUrl = 'https://api.andkov.nomoredomains.icu';

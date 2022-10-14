@@ -44,6 +44,7 @@ export default function App() {
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
+    console.log(jwt);
     if (!jwt) {
       return;
     }
@@ -52,7 +53,7 @@ export default function App() {
       .then((res) => {
         if (res) {
           setLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res.email);
         }
       })
       .catch((err) => {
