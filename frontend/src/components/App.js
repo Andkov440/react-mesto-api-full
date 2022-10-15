@@ -131,13 +131,15 @@ export default function App() {
   }, [isOpen]);
 
   React.useEffect(() => {
+    if(loggedIn) {
     api
       .getCards()
       .then((cards) => setCards([...cards]))
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    }
+  }, [loggedIn]);
 
   const handleCardLike = (card) => {
     if (!card.likes.some((i) => i._id === currentUser._id)) {
@@ -178,13 +180,15 @@ export default function App() {
   };
 
   React.useEffect(() => {
+    if (loggedIn) {
     api
       .getUserInfo()
       .then((res) => setCurrentUser(res))
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    }
+  }, [loggedIn]);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
